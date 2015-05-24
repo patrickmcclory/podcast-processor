@@ -33,6 +33,6 @@ ENV HOME /root
 WORKDIR /media
 
 ENV MEDIA_SOURCE="BDMV.mov"
-    PODCAST_ARGS="TWFC-NoiseProfile.mp3"
+ENV PODCAST_ARGS="TWFC-NoiseProfile.mp3"
 
 CMD ["processaudio $MEDIA_SOURCE $PODCAST_ARGS"]
