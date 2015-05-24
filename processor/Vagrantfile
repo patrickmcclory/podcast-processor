@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  # Vagrant configuration and machine provision
+
+  config.landrush.enabled = true
+  config.landrush.tld = 'dev'
+  config.landrush.guest_redirect_dns = false
+
+  config.vm.define 'sound' do |sound|
+    sound.vm.box = 'ubuntu1410lts'
+    sound.vm.box_url = 'https://cloud-images.ubuntu.com/vagrant/utopic/current/utopic-server-cloudimg-amd64-vagrant-disk1.box'
+    sound.vm.hostname = 'audioprocessor.patrickmcclory.dev'
+    sound.vm.network 'private_network', type: 'dhcp'
+    sound.vm.provision 'shell', inline: 'sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next'
+    sound.vm.provision 'shell', inline: 'sudo apt-get -y update'
+    sound.vm.provision 'shell', inline: 'sudo apt-get -y install sox libsox-fmt-mp3'
+    sound.vm.provision 'shell', inline: 'sudo apt-get -y install ffmpeg'
+    sound.vm.provision 'file', source: 'normalize.sh', destination: '/tmp/normalize.sh'
+    sound.vm.provision 'file', source: 'processaudio.sh', destination: '/tmp/processaudio.sh'
+    sound.vm.provision 'shell', inline: 'sudo chmod +x /tmp/normalize.sh && sudo chmod +x /tmp/processaudio.sh'
+    sound.vm.provision 'shell', inline: 'sudo mv /tmp/normalize.sh /bin/normalize && sudo mv /tmp/processaudio.sh /bin/processaudio'
+  end
+
+end
