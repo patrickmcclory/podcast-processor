@@ -9,7 +9,7 @@ FROM ubuntu:14.10
 
 RUN \
   sudo apt-get update -y -qq && \
-  sudo apt-get install wget python-pip git-core -y -qq && \
+  sudo apt-get install software-properties-common wget python-pip git-core -y -qq && \
   sudo pip install awscli==1.7.23
 
 RUN \
