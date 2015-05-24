@@ -15,8 +15,8 @@ RUN \
 RUN \
   sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next && \
   sudo apt-get update -y -qq && \
-  sudo apt-get install -y sox libsox-fmt-mp3 lame  -qq && \
-  sudo apt-get install -y ffmpeg
+  sudo apt-get install -y sox libsox-fmt-mp3 lame -qq && \
+  sudo apt-get install -y ffmpeg -qq
 
 COPY normalize.sh /bin/normalize
 
@@ -26,8 +26,13 @@ RUN \
   sudo chmod +x /bin/normalize && \
   sudo chmod +x /bin/processaudio
 
+VOLUME /media
+
 ENV HOME /root
 
-WORKDIR /root
+WORKDIR /media
 
-CMD ["bash"]
+ENV MEDIA_SOURCE="BDMV.mov"
+    PODCAST_ARGS="TWFC-NoiseProfile.mp3"
+
+CMD ["processaudio $MEDIA_SOURCE $PODCAST_ARGS"]
