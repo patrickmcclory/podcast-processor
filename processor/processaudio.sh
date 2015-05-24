@@ -6,8 +6,13 @@ if [ $# -lt 1 ]; then
   exit 1
 fi
 
-AUDIO_FILE_NAME=raw_audio.mp3
-PROCESSED_FILE_NAME=processed_audio.mp3
+TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+
+AUDIO_FILE_NAME=raw_audio-$TIMESTAMP.mp3
+PROCESSED_FILE_NAME=processed_audio-$TIMESTAMP.mp3
+
+FINAL_VIDEO_FILE_NAME=final_video-$TIMESTAMP.mp4
+FINAL_AUDIO_FILE_NAME=final_audio-$TIMESTAMP.mp4
 
 # strip audio
 
@@ -23,13 +28,13 @@ eval $sox_cmd
 
 sudo rm -rf $AUDIO_FILE_NAME
 
-ffmpeg -i $1 -i $PROCESSED_FILE_NAME -map 0 -map 1 -codec copy -shortest final_video.mp4
+ffmpeg -i $1 -i $PROCESSED_FILE_NAME -map 0 -map 1 -codec copy -shortest $FINAL_VIDEO_FILE_NAME
 
-lame -b 128 $PROCESSED_FILE_NAME final_podcast.mp3
+lame -b 128 $PROCESSED_FILE_NAME $FINAL_AUDIO_FILE_NAME
 
 sudo rm -rf $PROCESSED_FILE_NAME
 
 echo "********************************************************************************"
-echo "Final Video output: final_video.mp4"
-echo "Final Audio output: final_podcast.mp4"
+echo "Final Video output: $FINAL_VIDEO_FILE_NAME"
+echo "Final Audio output: $FINAL_AUDIO_FILE_NAME"
 echo "********************************************************************************"
