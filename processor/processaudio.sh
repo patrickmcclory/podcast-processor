@@ -11,7 +11,7 @@ PROCESSED_FILE_NAME=processed_audio.mp3
 
 # strip audio
 
-ffmpeg -i $1 $AUDIO_FILE_NAME
+ffmpeg -i $1 -b:a 256K -vn $AUDIO_FILE_NAME
 
 sox_cmd="normalize $AUDIO_FILE_NAME $PROCESSED_FILE_NAME"
 

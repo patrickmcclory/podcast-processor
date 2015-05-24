@@ -9,7 +9,7 @@ fi
 SOX_CMD="sox $1 $2"
 
 if [ $# -eq 3 ]; then
-  sox "$3" -noiseprof noise.prof
+  sox "$3" -n noiseprof noise.prof
   SOX_CMD="$SOX_CMD noisered noise.prof 0.21"
 fi
 

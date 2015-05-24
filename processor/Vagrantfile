@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     sound.vm.network 'private_network', type: 'dhcp'
     sound.vm.provision 'shell', inline: 'sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next'
     sound.vm.provision 'shell', inline: 'sudo apt-get -y update'
-    sound.vm.provision 'shell', inline: 'sudo apt-get -y install sox libsox-fmt-mp3'
+    sound.vm.provision 'shell', inline: 'sudo apt-get -y install sox libsox-fmt-mp3 lame'
     sound.vm.provision 'shell', inline: 'sudo apt-get -y install ffmpeg'
     sound.vm.provision 'file', source: 'normalize.sh', destination: '/tmp/normalize.sh'
     sound.vm.provision 'file', source: 'processaudio.sh', destination: '/tmp/processaudio.sh'
