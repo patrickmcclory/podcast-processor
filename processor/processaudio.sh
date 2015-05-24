@@ -16,21 +16,21 @@ FINAL_AUDIO_FILE_NAME=final_audio-$TIMESTAMP.mp4
 
 # strip audio
 
-ffmpeg -i $1 -b:a 256K -vn $AUDIO_FILE_NAME
+ffmpeg -i $1 -b:a $AUDIO_RIP_BITRATEK -vn $AUDIO_FILE_NAME
 
-sox_cmd="normalize $AUDIO_FILE_NAME $PROCESSED_FILE_NAME"
+normalize_cmd="normalize $AUDIO_FILE_NAME $PROCESSED_FILE_NAME"
 
 if [ $# -eq 2 ]; then
-sox_cmd="$sox_cmd $2"
+normalize_cmd="$normalize_cmd $2"
 fi
 
-eval $sox_cmd
+eval $normalize_cmd
 
 sudo rm -rf $AUDIO_FILE_NAME
 
 ffmpeg -i $1 -i $PROCESSED_FILE_NAME -map 0 -map 1 -codec copy -shortest $FINAL_VIDEO_FILE_NAME
 
-lame -b 128 $PROCESSED_FILE_NAME $FINAL_AUDIO_FILE_NAME
+lame -b $PODCAST_BITRATE $PROCESSED_FILE_NAME $FINAL_AUDIO_FILE_NAME
 
 sudo rm -rf $PROCESSED_FILE_NAME
 

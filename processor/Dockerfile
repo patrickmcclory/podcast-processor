@@ -7,6 +7,8 @@
 
 FROM ubuntu:14.10
 
+MAINTAINER Patrick McClory <pmcclory@gmail.com>
+
 RUN \
   sudo apt-get update -y -qq && \
   sudo apt-get install software-properties-common wget python-pip git-core -y -qq && \
@@ -34,5 +36,7 @@ WORKDIR /media
 
 ENV MEDIA_SOURCE="BDMV.mov"
 ENV PODCAST_ARGS="TWFC-NoiseProfile.mp3"
+ENV AUDIO_RIP_BITRATE="256"
+ENV PODCAST_BITRATE="128"
 
 CMD ["processaudio $MEDIA_SOURCE $PODCAST_ARGS"]
