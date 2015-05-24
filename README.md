@@ -5,4 +5,8 @@ This docker/vagrant/bash script setup is intended to manage the process of extra
 * Download and install [Kitematic](https://kitematic.com/download/) on your Mac
 * Add a container from the repository [patrickmcclory/podcast-processor](https://registry.hub.docker.com/u/patrickmcclory/podcast-processor/)
 * Edit the following settings for the container
-  *
+  * Environment Variables
+    * MEDIA_SOURCE - name of the video file within the volume mounted that is the source for this proces
+    * NOISE_PROFILE_FILE - name of the mp3 file within the volume mounted that is the noise profile for processing the audio
+    * AUDIO_RIP_BITRATE - bitrate at which to rip audio from the source video file
+    * PODCAST_BITRATE - bitrate at which to encode the file to post for podcasting
