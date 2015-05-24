@@ -25,7 +25,7 @@ sudo rm -rf $AUDIO_FILE_NAME
 
 ffmpeg -i $1 -i $PROCESSED_FILE_NAME -map 0 -map 1 -codec copy -shortest final_video.mp4
 
-lame -b 128 -m m $PROCESSED_FILE_NAME final_podcast.mp3
+lame -b 128 $PROCESSED_FILE_NAME final_podcast.mp3
 
 sudo rm -rf $PROCESSED_FILE_NAME
 
