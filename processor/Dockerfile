@@ -5,14 +5,9 @@
 #
 # Currently installs: awscli 1.7.23
 
-FROM ubuntu:14.10
+FROM FROM patrickmcclory/pmdev-baseimage:14.10
 
 MAINTAINER Patrick McClory <pmcclory@gmail.com>
-
-RUN \
-  sudo apt-get update -y -qq && \
-  sudo apt-get install software-properties-common wget python-pip git-core -y -qq && \
-  sudo pip install awscli==1.7.23
 
 RUN \
   sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next && \
