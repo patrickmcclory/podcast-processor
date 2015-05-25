@@ -13,7 +13,8 @@ RUN \
   sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next && \
   sudo apt-get update -y -qq && \
   sudo apt-get install -y sox libsox-fmt-mp3 lame -qq && \
-  sudo apt-get install -y ffmpeg -qq
+  sudo apt-get install -y ffmpeg -qq && \
+  sudo mkdir -p /media
 
 COPY normalize.sh /bin/normalize
 
