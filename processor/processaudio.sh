@@ -18,7 +18,7 @@ FINAL_AUDIO_FILE_NAME=$FILE_PATH/final_audio-$TIMESTAMP.mp4
 
 # strip audio
 
-ffmpeg -i $1 -b:a $AUDIO_RIP_BITRATEK -vn $AUDIO_FILE_NAME
+ffmpeg -i $1 -b:a "$AUDIO_RIP_BITRATE"K -vn "$AUDIO_FILE_NAME"
 
 normalize_cmd="normalize $AUDIO_FILE_NAME $PROCESSED_FILE_NAME"
 
