@@ -12,6 +12,7 @@ This docker/vagrant/bash script setup is intended to manage the process of extra
     * MEDIA_SOURCE - name of the video file within the volume mounted that is the source for this proces
     * NOISE_PROFILE_FILE - name of the mp3 file within the volume mounted that is the noise profile for processing the audio
     * AUDIO_RIP_BITRATE - bitrate at which to rip audio from the source video file
+    * GENERATE_PODCAST - Indicates whether a podcast will be generated from the video or not - Will generate podcast if 'True' is present
     * PODCAST_BITRATE - bitrate at which to encode the file to post for podcasting
     * MEDIA_DIR - this is the mount point within the container where your media is accessible through
 
