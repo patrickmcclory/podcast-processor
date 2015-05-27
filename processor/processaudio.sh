@@ -23,7 +23,7 @@ ffmpeg -i $1 -b:a "$AUDIO_RIP_BITRATE"K -vn "$AUDIO_FILE_NAME"
 normalize_cmd="normalize $AUDIO_FILE_NAME $PROCESSED_FILE_NAME"
 
 if [ $# -eq 2 ]; then
-normalize_cmd="$normalize_cmd $FILE_PATH/$2"
+normalize_cmd="$normalize_cmd $2"
 fi
 
 eval $normalize_cmd
