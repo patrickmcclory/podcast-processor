@@ -8,6 +8,10 @@ fi
 
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
+INPUT_FILE=$MEDIA_DIR/$MEDIA_SOURCE
+NOISE_FILE=$MEDIA_DIR/$NOISE_PROFILE_FILE
+
+
 FILE_PATH="/media"
 
 AUDIO_FILE_NAME=$FILE_PATH/raw_audio-$TIMESTAMP.mp3
@@ -18,21 +22,46 @@ FINAL_AUDIO_FILE_NAME=$FILE_PATH/final_audio-$TIMESTAMP.mp3
 
 # strip audio
 
-ffmpeg -i $1 -b:a "$AUDIO_RIP_BITRATE"K -vn "$AUDIO_FILE_NAME"
+ffmpeg_cmd="ffmpeg -i $INPUT_FILE -b:a ""$AUDIO_RIP_BITRATE""K -vn $AUDIO_FILE_NAME"
+
+echo "********************************************************************************"
+echo "Running ffmpeg audio strip Command: "
+echo "$ffmpeg_cmd"
+echo "********************************************************************************"
+
 
 normalize_cmd="normalize $AUDIO_FILE_NAME $PROCESSED_FILE_NAME"
 
-if [ $# -eq 2 ]; then
-normalize_cmd="$normalize_cmd $2"
+if [ "$NOISE_PROFILE_FILE" -eq "" ]; then
+normalize_cmd="$normalize_cmd $NOISE_FILE"
 fi
+
+echo "********************************************************************************"
+echo "Running Normalize Command: "
+echo "$normalize_cmd"
+echo "********************************************************************************"
 
 eval $normalize_cmd
 
 sudo rm -rf $AUDIO_FILE_NAME
 
-ffmpeg -i $1 -i $PROCESSED_FILE_NAME -map 0 -map 1 -codec copy -shortest $FINAL_VIDEO_FILE_NAME
+ffmpeg_recombine="ffmpeg -i $INPUT_FILE -i $PROCESSED_FILE_NAME -map 0 -map 1 -codec copy -shortest $FINAL_VIDEO_FILE_NAME"
 
-lame -q -b $PODCAST_BITRATE $PROCESSED_FILE_NAME $FINAL_AUDIO_FILE_NAME
+echo "********************************************************************************"
+echo "Running ffmpeg recombine Command: "
+echo "$ffmpeg_recombine"
+echo "********************************************************************************"
+
+eval $ffmpeg_recombine
+
+lame_cmd="lame -q -b$PODCAST_BITRATE $PROCESSED_FILE_NAME $FINAL_AUDIO_FILE_NAME"
+
+echo "********************************************************************************"
+echo "Running lame Command: "
+echo "$lame_cmd"
+echo "********************************************************************************"
+
+eval $lame_cmd
 
 sudo rm -rf $PROCESSED_FILE_NAME
 

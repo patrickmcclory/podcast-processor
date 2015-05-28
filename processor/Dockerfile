@@ -39,4 +39,4 @@ ENV MEDIA_DIR="/media"
 
 ENTRYPOINT ["/bin/processaudio"]
 
-CMD ["$MEDIA_DIR/$MEDIA_SOURCE", "$MEDIA_DIR/$NOISE_PROFILE_FILE"]
+CMD ["/bin/bash"]
