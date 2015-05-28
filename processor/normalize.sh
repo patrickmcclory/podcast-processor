@@ -24,8 +24,13 @@ SOX_CMD="$SOX_CMD fade 0.1"
 SOX_CMD="$SOX_CMD reverse"
 SOX_CMD="$SOX_CMD norm -0.5"
 
+echo "********************************************************************************"
+echo "Running command: "
+echo "$SOX_CMD"
+echo "********************************************************************************"
+
 eval "$SOX_CMD"
 
 if [ $# -eq 3 ]; then
-  rm -rf noise.prof
+#  rm -rf noise.prof
 fi

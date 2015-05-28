@@ -43,7 +43,7 @@ echo "**************************************************************************
 
 eval $normalize_cmd
 
-sudo rm -rf $AUDIO_FILE_NAME
+#sudo rm -rf $AUDIO_FILE_NAME
 
 ffmpeg_recombine="ffmpeg -i $INPUT_FILE -i $PROCESSED_FILE_NAME -map 0 -map 1 -codec copy -shortest $FINAL_VIDEO_FILE_NAME"
 
@@ -63,7 +63,7 @@ echo "**************************************************************************
 
 eval $lame_cmd
 
-sudo rm -rf $PROCESSED_FILE_NAME
+#sudo rm -rf $PROCESSED_FILE_NAME
 
 echo "********************************************************************************"
 echo "Final Video output: $FINAL_VIDEO_FILE_NAME"
