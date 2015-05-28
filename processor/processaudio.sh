@@ -32,7 +32,7 @@ echo "**************************************************************************
 
 normalize_cmd="normalize $AUDIO_FILE_NAME $PROCESSED_FILE_NAME"
 
-if [ "$NOISE_PROFILE_FILE" -eq "" ]; then
+if [ -z "$NOISE_PROFILE_FILE" ]; then
 normalize_cmd="$normalize_cmd $NOISE_FILE"
 fi
 
