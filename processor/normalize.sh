@@ -6,7 +6,7 @@ if [ $# -lt 2 ]; then
   exit 1
 fi
 
-SOX_CMD="sox −−show−progress $1 $2"
+SOX_CMD="sox $1 $2"
 
 if [ $# -eq 3 ]; then
   sox "$3" -n noiseprof noise.prof
