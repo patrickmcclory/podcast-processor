@@ -31,6 +31,6 @@ echo "**************************************************************************
 
 eval "$SOX_CMD"
 
-#if [ $# -eq 3 ]; then
-#  rm -rf noise.prof
-#fi
+if [ $# -eq 3 ]; then
+  rm -rf noise.prof
+fi

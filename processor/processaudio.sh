@@ -5,7 +5,6 @@ TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 INPUT_FILE=$MEDIA_DIR/$MEDIA_SOURCE
 NOISE_FILE=$MEDIA_DIR/$NOISE_PROFILE_FILE
 
-
 FILE_PATH="/media"
 
 AUDIO_FILE_NAME=$FILE_PATH/raw_audio-$TIMESTAMP.mp3
@@ -38,7 +37,7 @@ echo "**************************************************************************
 
 eval $normalize_cmd
 
-#sudo rm -rf $AUDIO_FILE_NAME
+sudo rm -rf $AUDIO_FILE_NAME
 
 ffmpeg_recombine="ffmpeg -i $INPUT_FILE -i $PROCESSED_FILE_NAME -map 0 -map 1 -codec copy -shortest $FINAL_VIDEO_FILE_NAME"
 
@@ -58,7 +57,7 @@ echo "**************************************************************************
 
 eval $lame_cmd
 
-#sudo rm -rf $PROCESSED_FILE_NAME
+sudo rm -rf $PROCESSED_FILE_NAME
 
 echo "********************************************************************************"
 echo "Final Video output: $FINAL_VIDEO_FILE_NAME"
