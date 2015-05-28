@@ -1,11 +1,5 @@
 #!/bin/bash
 
-if [ $# -lt 1 ]; then
-  echo "Usage: $0 infile "
-  echo "       $0 infile noisefile"
-  exit 1
-fi
-
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
 INPUT_FILE=$MEDIA_DIR/$MEDIA_SOURCE
@@ -29,6 +23,7 @@ echo "Running ffmpeg audio strip Command: "
 echo "$ffmpeg_cmd"
 echo "********************************************************************************"
 
+eval $ffmpeg_cmd
 
 normalize_cmd="normalize $AUDIO_FILE_NAME $PROCESSED_FILE_NAME"
 
