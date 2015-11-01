@@ -5,7 +5,7 @@
 #
 # Currently installs: awscli 1.7.23
 
-FROM patrickmcclory/pmdev-baseimage:14.10
+FROM patrickmcclory/pmdev-baseimage:15.04
 
 MAINTAINER Patrick McClory <pmcclory@gmail.com>
 
