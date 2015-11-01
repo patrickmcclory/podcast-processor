@@ -5,14 +5,14 @@
 #
 # Currently installs: awscli 1.7.23
 
-FROM ubuntu:14.10
+FROM ubuntu:15.04
 
 MAINTAINER Patrick McClory <pmcclory@gmail.com>
 
 RUN \
   sudo apt-get update -y -qq && \
   sudo apt-get install software-properties-common wget python-pip git-core -y -qq && \
-  sudo pip install awscli==1.7.23
+  sudo pip install awscli==1.9.2
 
 ENV HOME /root
 
